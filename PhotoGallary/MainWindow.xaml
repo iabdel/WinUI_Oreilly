@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="PhotoGallary.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PhotoGallary"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="using:PhotoGallary.Model"
+    mc:Ignorable="d"
+    Title="PhotoGallary">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="0" x:Name="SearchBox" Text="Media"/>
+        <ListView Grid.Row="1"
+          x:Name="ItemList">
+            <ListView.HeaderTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border BorderBrush="BlueViolet"
+                    BorderThickness="0,0,0,1">
+                            <TextBlock Text="Medium"
+                           Margin="5,0,0,0"
+                           FontWeight="Bold"/>
+                        </Border>
+                        <Border Grid.Column="1"
+                    BorderBrush="BlueViolet"
+                    BorderThickness="0,0,0,1">
+                            <TextBlock Text="Title"
+                           Margin="5,0,0,0"
+                           FontWeight="Bold"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListView.HeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:MediaItem">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Bind
+                  Path=MediumInfo.Name}"/>
+                        <TextBlock Grid.Column="1"
+                   Text="{x:Bind Path=Name}"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
